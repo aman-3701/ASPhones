@@ -22,7 +22,9 @@ pipeline {
             steps{
                 script{
                     sonarqube_analysis("Sonar","ASPhones","Sonar")
+                    
                 }
+                echo "aman"
             }
         }
 
@@ -34,6 +36,6 @@ pipeline {
       //       }
       //        sh "docker push ${dockerhubuser}/${Project}:${ImageTag}"
       //   }
-      
+
     }
 }
