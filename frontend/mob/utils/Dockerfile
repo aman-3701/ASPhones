@@ -25,14 +25,13 @@ FROM nginx:stable-alpine
 # Clean default nginx files
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy built files from builder stage
+
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Use safer non-root user (nginx runs fine with this)
+
 USER nginx
 
-# Expose default port
 EXPOSE 80
 
-# Start nginx
+
 CMD ["nginx", "-g", "daemon off;"]
