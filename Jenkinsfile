@@ -10,10 +10,26 @@ pipeline {
             }
         }
 
+          stage("Workspace cleanup"){
+            steps{
+                script{
+                    cleanWs()
+                }
+            }
+        }
+
         stage('Git: Code Checkout') {
             steps {
                 script {
                     code_checkout("https://github.com/aman-3701/ASPhones.git", "master")
+                }
+            }
+        }
+
+         stage("Trivy: Filesystem scan"){
+            steps{
+                script{
+                    trivy_scan()
                 }
             }
         }
