@@ -1,27 +1,29 @@
 @Library('Shared') _
-pipeline{
-  agent any
-   stages{
-      stage('Build') {
-         steps {
-            echo 'Building..'
-            // Add your build commnds here
-         }
-      }
-       stage('Git: Code Checkout') {
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
             steps {
-                script{
-                    code_checkout("https://github.com/aman-3701/ASPhones.git","master")
+                echo 'Building...'
+                // Add your build commands here
+            }
+        }
+
+        stage('Git: Code Checkout') {
+            steps {
+                script {
+                    code_checkout("https://github.com/aman-3701/ASPhones.git", "master")
                 }
             }
         }
-        stage("Docker Login"){
-         withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerhubpass', usernameVariable: 'dockerhubuser')]) {
-             sh "docker login -u ${dockerhubuser} -p ${dockerhubpass}"
-  }
-  
-}
+
+        stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'dockerhubuser', passwordVariable: 'dockerhubpass')]) {
+                    sh "docker login -u ${dockerhubuser} -p ${dockerhubpass}"
+                }
+            }
         }
-        
-   
+    }
 }
