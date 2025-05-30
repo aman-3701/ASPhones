@@ -51,7 +51,19 @@ pipeline {
                 }
             }
         }
-
+    stage("Docker: Build Images"){
+            steps{
+                script{
+                        dir('backend'){
+                            docker_build("ASPhones","latest","amandevops8080")
+                        }
+                    
+                        dir('frontend'){
+                            docker_build("ASPhones","latest","amandevops8080")
+                        }
+                }
+            }
+        }
       //   stage('Docker Login') {
       //       steps {
       //           withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'dockerhubuser', passwordVariable: 'dockerhubpass')]) {
