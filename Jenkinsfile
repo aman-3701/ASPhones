@@ -21,7 +21,9 @@ pipeline {
          stage("SonarQube: Code Analysis"){
             steps{
                 script{
-                    sonarqube_analysis("Sonar","ASPhones","Sonar")
+                  
+
+                    sonarqube_analysis("SonarQube","ASPhones","SonarQube")
                      echo "aman"
                 }
           
