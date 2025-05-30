@@ -1,16 +1,20 @@
-pipeline {
-    agent any
-    stages {
-        stage('Git: Code Checkout') {
+@Library("Shared") _
+pipeline{
+  agent any
+   stages{
+      stage('Build') {
+         steps {
+            echo 'Building..'
+            // Add your build commands here
+         }
+      }
+       stage('Git: Code Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/aman-3701/ASPhones.git'
+                script{
+                    code_checkout("https://github.com/aman-3701/ASPhones.git","master")
+                }
             }
         }
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                // Add your build commands here
-            }
-        }
-    }
+        
+   } 
 }
