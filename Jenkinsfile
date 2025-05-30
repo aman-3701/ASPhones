@@ -15,7 +15,7 @@ Pipeline{
             }
         }
         stage("priyanushu kumar lawda "){
-          echo "This is a test stage Priyanshu kumar the  Lawda"
+          echo "This is a test stage Priyanshu kumar theee  Lawda"
         }
    } 
 }
