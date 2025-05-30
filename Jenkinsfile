@@ -44,7 +44,7 @@ pipeline {
             }
         }
 
-         stage("Trivy: FileSystem scan"){
+         stage("Trivy: FileSystem Scan"){
             steps{
                 script{
                     trivy_scan()
