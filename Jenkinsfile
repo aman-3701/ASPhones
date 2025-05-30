@@ -22,9 +22,9 @@ pipeline {
             steps{
                 script{
                     sonarqube_analysis("Sonar","ASPhones","Sonar")
-                    
+                       echo "aman"
                 }
-                echo "aman"
+          
             }
         }
 
