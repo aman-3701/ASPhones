@@ -63,15 +63,14 @@ pipeline {
                         }
                 }
             }
+        } stage("Docker: Push to DockerHub"){
+            steps{
+                script{
+                    docker_push("asphones","latest","amandevops8080") 
+                    docker_push("asphones","latest","amandevops8080")
+                }
+            }
         }
-      //   stage('Docker Login') {
-      //       steps {
-      //           withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'dockerhubuser', passwordVariable: 'dockerhubpass')]) {
-      //               sh "docker login -u ${dockerhubuser} -p ${dockerhubpass}"
-      //           }
-      //       }
-      //        sh "docker push ${dockerhubuser}/${Project}:${ImageTag}"
-      //   }
 
     }
 }
