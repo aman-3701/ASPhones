@@ -1,11 +1,16 @@
 
 FROM node:18-alpine AS builder
 
+RUN npm install -g pnpm
+
 WORKDIR /app
 
 
-COPY package.json package-lock.json ./
-RUN pnpm ci
+
+
+COPY package.json pnpm-lock.yaml ./
+
+RUN pnpm install
 
 
 COPY . .
