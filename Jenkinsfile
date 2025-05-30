@@ -55,11 +55,11 @@ pipeline {
             steps{
                 script{
                         dir('backend'){
-                            docker_build("ASPhones","latest","amandevops8080")
+                            docker_build("asphones","latest","amandevops8080")
                         }
                     
                         dir('frontend'){
-                            docker_build("ASPhones","latest","amandevops8080")
+                            docker_build("asphones","latest","amandevops8080")
                         }
                 }
             }
