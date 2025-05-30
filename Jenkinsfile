@@ -1,4 +1,4 @@
-Pipeline{
+pipeline{
  agents any 
    stages{
       stage('Build') {
@@ -14,8 +14,6 @@ Pipeline{
                 }
             }
         }
-        stage("priyanushu kumar lawda "){
-          echo "This is a test stage Priyanshu kumar  Lawwdaa"
-        }
+        
    } 
 }
