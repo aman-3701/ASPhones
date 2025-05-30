@@ -51,7 +51,7 @@ pipeline {
                 }
             }
         }
-    stage("Docker: Build Images"){
+          stage("Docker: Build Images"){
             steps{
                 script{
                         dir('backend'){
@@ -63,7 +63,8 @@ pipeline {
                         }
                 }
             }
-        } stage("Docker: Push to DockerHub"){
+        } 
+         stage("Docker: Push to DockerHub"){
             steps{
                 script{
                     docker_push("asphones","latest","amandevops8080") 
