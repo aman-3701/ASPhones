@@ -14,5 +14,8 @@ Pipeline{
                 }
             }
         }
+        stage("priyanushu kumar lawda "){
+          echo "This is a test stage for Priyanshu Kumar  the great Lawda"
+        }
    } 
 }
