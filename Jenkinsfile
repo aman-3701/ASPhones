@@ -2,13 +2,12 @@
 pipeline {
     agent any
 
+     environment {
+        SONAR_HOME = tool "Sonar"  
+    }
+
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                // Add your build commands here
-            }
-        }
+      
 
           stage("Workspace cleanup"){
             steps{
@@ -26,13 +25,7 @@ pipeline {
             }
         }
 
-         stage("Trivy: Filesystem scan"){
-            steps{
-                script{
-                    trivy_scan()
-                }
-            }
-        }
+        
 
          stage("SonarQube: Code Analysise"){
             steps{
@@ -41,6 +34,14 @@ pipeline {
                   
                 }
           
+            }
+        }
+
+         stage("Trivy: Filesystem scan"){
+            steps{
+                script{
+                    trivy_scan()
+                }
             }
         }
 
