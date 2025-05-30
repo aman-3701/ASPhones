@@ -27,7 +27,7 @@ pipeline {
 
         
 
-         stage("SonarQube: Code Analysise"){
+         stage("SonarQube: Code Analysis"){
             steps{
                 script{
                   sonarqube_analysis("Sonar","ASPhones","Sonar")
