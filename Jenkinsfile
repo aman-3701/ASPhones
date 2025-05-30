@@ -5,7 +5,7 @@ pipeline{
       stage('Build') {
          steps {
             echo 'Building..'
-            // Add your build commands here
+            // Add your build commnds here
          }
       }
        stage('Git: Code Checkout') {
