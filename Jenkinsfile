@@ -36,6 +36,13 @@ pipeline {
           
             }
         }
+         stage("SonarQube: Code Quality Gates"){
+            steps{
+                script{
+                    sonarqube_code_quality()
+                }
+            }
+        }
 
          stage("Trivy: Filesystem scan"){
             steps{
