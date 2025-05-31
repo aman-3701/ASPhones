@@ -24,7 +24,21 @@ pipeline {
                 }
             }
         }
+          stage("Trivy : FileSystem Scan"){
+            steps{
+                script{
+                    trivy_scan()
+                }
+            }
+        }
 
+         stage("OWASP: Dependency check"){
+            steps{
+                script{
+                    owasp_dependency()
+                }
+            }
+        }
         
 
          stage("SonarQube: Code Analysis"){
@@ -44,13 +58,7 @@ pipeline {
             }
         }
 
-         stage("Trivy : FileSystem Scan"){
-            steps{
-                script{
-                    trivy_scan()
-                }
-            }
-        }
+         
           stage("Docker: Build Images"){
             steps{
                 script{
