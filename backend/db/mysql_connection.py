@@ -15,5 +15,6 @@ def get_connection():
         password=MYSQL_PASSWORD,
         db=MYSQL_DB,
         ssl_ca=MYSQL_SSL_CA,
-        port=3306
+        port=3306,
+        cursorclass=pymysql.cursors.DictCursor
     )

@@ -3,6 +3,8 @@ import datetime
 import json
 import logging
 
+from components.get_mobile import get_mobile
+from components.get_mobile_id import get_mobile_id
 from components.login_handler import handle_login
 from components.singup_handler import handle_signup
 
@@ -17,4 +19,14 @@ def signup_function(req: func.HttpRequest) -> func.HttpResponse:
 @app.route(route="login", methods=[ "POST"])
 def login_function(req: func.HttpRequest) -> func.HttpResponse:
     return handle_login(req)
+
+@app.function_name(name="mobile")
+@app.route(route="GetMobile", methods=[ "GET"])
+def mobile_function(req: func.HttpRequest) -> func.HttpResponse:
+    return get_mobile(req)
+
+@app.function_name(name="mobile_id")
+@app.route(route="GetMobile_id/{id}", methods=[ "GET"])
+def mobile_function(req: func.HttpRequest) -> func.HttpResponse:
+    return get_mobile_id(req)
 

@@ -66,7 +66,7 @@ pipeline {
                             docker_build("asphones","latest","amandevops8080")
                         }
                     
-                        dir('frontend/mob'){
+                        dir('frontend/mon2'){
                             docker_build("asphones","latest","amandevops8080")
                         }
                 }

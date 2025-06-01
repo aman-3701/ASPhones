@@ -1,6 +1,5 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: backend-deployment
-  namespace: asphones
+  name: asphones
   

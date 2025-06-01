@@ -1,23 +1,20 @@
-import pymysql
+import mysql.connector
+from mysql.connector import Error
 
-try:
-    conn = pymysql.connect(
-        host='database-1.c50eqi0c2eg3.ap-south-1.rds.amazonaws.com',
-        user='admin',
-        password='root12345',
-        db='aman',
-        ssl_ca='aman.pem',  # Make sure this file exists and is valid
-        port=3306
-    )
-    print("✅ Connection successful!")
+def test():
+    try:
+        connection = mysql.connector.connect(
+            host='database-1.c50eqi0c2eg3.ap-south-1.rds.amazonaws.com',       # e.g. 'localhost' or IP address
+            user='admin',
+            password='root12345',
+            database='aman'
+        )
+        
+        if connection.is_connected():
+            print("Successfully connected to MySQL database")
+            connection.close()
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
 
-    cursor = conn.cursor()
-    cursor.execute("SELECT VERSION()")
-    version = cursor.fetchone()
-    print("MySQL version:", version[0])
-
-    cursor.close()
-    conn.close()
-
-except Exception as e:
-    print("❌ Connection failed:", e)
+if __name__ == "__main__":
+    test()
