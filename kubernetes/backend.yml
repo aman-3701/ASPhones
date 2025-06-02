@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: amandevops8080/asphones-backend:latest
+          image: amandevops8080/backend-asphones:latest
           imagePullSecrets:
             - name: regcred
           ports:
