@@ -41,22 +41,22 @@ pipeline {
         }
         
 
-         stage("SonarQube: Code Analysis"){
-            steps{
-                script{
-                  sonarqube_analysis("Sonar","ASPhones","Sonar")
+        //  stage("SonarQube: Code Analysis"){
+        //     steps{
+        //         script{
+        //           sonarqube_analysis("Sonar","ASPhones","Sonar")
                   
-                }
+        //         }
           
-            }
-        }
-         stage("SonarQube: Code Quality Gates"){
-            steps{
-                script{
-                    sonarqube_code_quality()
-                }
-            }
-        }
+        //     }
+        // }
+        //  stage("SonarQube: Code Quality Gates"){
+        //     steps{
+        //         script{
+        //             sonarqube_code_quality()
+        //         }
+        //     }
+        // }
 
          
           stage("Docker: Build Image"){

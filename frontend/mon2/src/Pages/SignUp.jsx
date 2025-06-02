@@ -21,9 +21,14 @@ const SignUp = () => {
     setLoading(true);
     setError("");
     try {
+      // Only send name and password as per backend requirements
+      const payload = {
+        name: Input.name,
+        password: Input.password,
+      };
       const response = await axios.post(
         "http://localhost:7071/api/signup",
-        Input,
+        payload,
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: false,
@@ -34,7 +39,7 @@ const SignUp = () => {
       }
       navigate("/");
     } catch (err) {
-      setError(err.response?.data || err.message);
+      setError(err.response?.data?.message || err.message);
     } finally {
       setLoading(false);
     }
