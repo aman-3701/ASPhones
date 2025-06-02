@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: amandevops8080/asphones-frontend:latest
+          image: amandevops8080/asphones:latest
           ports:
             - containerPort: 5173
 ---
