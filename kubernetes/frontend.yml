@@ -21,8 +21,10 @@ spec:
           ports:
             - containerPort: 5173
           volumeMounts:
-            - name: frontend-storage
+            - name: nginx-cache
               mountPath: /usr/share/nginx/html
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
       volumes:
         - name: nginx-cache
           emptyDir: {}
