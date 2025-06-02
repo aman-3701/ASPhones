@@ -37,7 +37,7 @@ spec:
       volumes:
         - name: mysql-storage
           persistentVolumeClaim:
-            claimName: backend-pvc
+            claimName: mysql-pvc
 
 ---
 apiVersion: v1
