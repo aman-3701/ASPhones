@@ -16,32 +16,27 @@ spec:
       containers:
         - name: backend
           image: amandevops8080/asphones-backend:latest
-          imagePullSecret: regcred
-      
+          imagePullSecrets:
+            - name: regcred
           ports:
             - containerPort: 7071
           env:
-          - name: DB_HOST
-            value: database-1.c50eqi0c2eg3.ap-south-1.rds.amazonaws.com
-          - name: DB_PORT
-            value: "3306"
-          - name: DB_NAME
-            value: aman
-          - name: DB_USER
-            valueFrom:
-             secretKeyRef:
-              name: mysql-secret
-              key: mysql-user
-          - name: DB_PASSWORD
-            valueFrom:
-             secretKeyRef:
-              name: mysql-secret
-              key: mysql-password
-          volumeMounts:
-            - name: mysql-storage
-              mountPath: /var/lib/mysql
-      
-
+            - name: DB_HOST
+              value: database-1.c50eqi0c2eg3.ap-south-1.rds.amazonaws.com
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              value: aman
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-password
 ---
 apiVersion: v1
 kind: Service
@@ -57,7 +52,6 @@ spec:
       targetPort: 7071
       protocol: TCP
       nodePort: 31100
-
 
 
 
