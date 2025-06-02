@@ -23,7 +23,7 @@ apiVersion: v1
 kind: Service 
 metadata:
   name: frontend-service
-  namespace: asphones 
+  namespace: backend-deployment 
 spec:
   type: NodePort
   selector:
