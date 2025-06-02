@@ -59,7 +59,7 @@ pipeline {
         }
 
          
-          stage("Docker: Build Images"){
+          stage("Docker: Build Image"){
             steps{
                 script{
                         dir('backend'){
