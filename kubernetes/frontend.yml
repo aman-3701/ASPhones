@@ -15,7 +15,9 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: amandevops8080/asphones:latest
+          image: amandevops8080/frontend-asphones:latest
+          imagePullSecrets:
+            - name: regcred
           ports:
             - containerPort: 5173
 ---

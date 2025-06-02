@@ -63,11 +63,11 @@ pipeline {
             steps{
                 script{
                         dir('backend'){
-                            docker_build("asphones","latest","amandevops8080")
+                            docker_build("backend-asphones","latest","amandevops8080")
                         }
                     
                         dir('frontend/mon2'){
-                            docker_build("asphones","latest","amandevops8080")
+                            docker_build("frontend-asphones","latest","amandevops8080")
                         }
                 }
             }
@@ -75,8 +75,8 @@ pipeline {
          stage("Docker: Push to DockerHub"){
             steps{
                 script{
-                    docker_push("asphones","latest","amandevops8080") 
-                    docker_push("asphones","latest","amandevops8080")
+                    docker_push("backend-asphones","latest","amandevops8080") 
+                    docker_push("frontend-asphones","latest","amandevops8080")
                 }
             }
         }
