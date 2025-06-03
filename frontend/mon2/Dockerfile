@@ -4,13 +4,11 @@ FROM node:18-alpine AS builder
 # At the top of the Dockerfile
 WORKDIR /app
 
-COPY mon2/package*.json ./ 
+COPY package*.json  pnpm-lock.yaml ./
 RUN npm install -g pnpm && pnpm install
-COPY mon2/. .
+COPY . .
 
 # Later lines remain the same
-
-
 
 RUN pnpm run build
 
