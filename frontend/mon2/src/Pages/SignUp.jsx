@@ -37,7 +37,7 @@ const SignUp = () => {
       if (response.status !== 201) {
         throw new Error(response.data.message || "Signup failed");
       }
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || err.message);
     } finally {

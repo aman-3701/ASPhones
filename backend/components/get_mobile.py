@@ -12,6 +12,24 @@ def default_serializer(obj):
 def get_mobile(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Fetching all mobiles')
 
+    def cors_response(body, status_code=200):
+        if isinstance(body, (dict, list)):
+            body = json.dumps(body, default=default_serializer)
+        return func.HttpResponse(
+            body,
+            status_code=status_code,
+            headers={
+                'Access-Control-Allow-Origin': 'http://localhost:5173',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Referrer-Policy': 'strict-origin-when-cross-origin',
+                'Content-Type': 'application/json',
+            }
+        )
+
+    if req.method == 'OPTIONS':
+        return cors_response({}, 204)
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -20,12 +38,8 @@ def get_mobile(req: func.HttpRequest) -> func.HttpResponse:
         cursor.close()
         conn.close()
 
-        return func.HttpResponse(
-            json.dumps(mobiles, default=default_serializer),  
-            status_code=200,
-            mimetype="application/json"
-        )
+        return cors_response(mobiles, 200)
 
     except Exception as e:
         logging.error(f"Database error: {e}")
-        return func.HttpResponse("Database error", status_code=500)
+        return cors_response({"message": "Database error"}, 500)

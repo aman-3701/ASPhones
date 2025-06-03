@@ -1,3 +1,4 @@
+import json
 import azure.functions as func
 import logging
 import bcrypt
@@ -5,6 +6,24 @@ from db.mysql_connection import get_connection
 
 def handle_signup(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing signup request')
+
+    def cors_response(body, status_code=200):
+        if isinstance(body, dict):
+            body = json.dumps(body)
+        return func.HttpResponse(
+            body,
+            status_code=status_code,
+            headers={
+                'Access-Control-Allow-Origin': 'http://localhost:5173',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Referrer-Policy': 'strict-origin-when-cross-origin',
+                'Content-Type': 'application/json',
+            }
+        )
+
+    if req.method == 'OPTIONS':
+        return cors_response({}, 204)
 
     name = req.params.get('name')
     password = req.params.get('password')
@@ -15,10 +34,10 @@ def handle_signup(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
             password = req_body.get('password')
         except ValueError:
-            return func.HttpResponse("Invalid JSON body", status_code=400)
+            return cors_response({"message": "Invalid JSON body"}, 400)
 
     if not name or not password:
-        return func.HttpResponse("Name and password are required", status_code=400)
+        return cors_response({"message": "Name and password are required"}, 400)
 
     try:
         conn = get_connection()
@@ -28,7 +47,7 @@ def handle_signup(req: func.HttpRequest) -> func.HttpResponse:
         if cursor.fetchone():
             cursor.close()
             conn.close()
-            return func.HttpResponse("User already exists", status_code=400)
+            return cors_response({"message": "User already exists"}, 400)
 
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
         cursor.execute("INSERT INTO users (name, password) VALUES (%s, %s)", (name, hashed_password))
@@ -36,8 +55,8 @@ def handle_signup(req: func.HttpRequest) -> func.HttpResponse:
 
         cursor.close()
         conn.close()
-        return func.HttpResponse("User created successfully", status_code=201)
+        return cors_response({"message": "User created successfully"}, 201)
 
     except Exception as e:
         logging.error(f"Database error: {e}")
-        return func.HttpResponse(f"Database error: {e}", status_code=500)
+        return cors_response({"message": f"Database error: {e}"}, 500)

@@ -1,45 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Card from "./Card";
 
-const data = [
-  {
-    id: 1,
-    brand: "Apple",
-    model_name: "iPhone 16e",
-    image_url:
-      "https://www.oruphones.com/_next/image?url=https%3A%2F%2Fdemo-bucket-c2c-001.s3.amazonaws.com%2FGSMAimages%2Fapple_iphone_16e.webp&w=640&q=75",
-  },
-  {
-    id: 2,
-    brand: "Apple",
-    model_name: "iPhone 16",
-    image_url:
-      "https://www.oruphones.com/_next/image?url=https%3A%2F%2Fdemo-bucket-c2c-001.s3.amazonaws.com%2FGSMAimages%2Fapple_iphone_16.webp&w=640&q=75",
-  },
-  {
-    id: 3,
-    brand: "Apple",
-    model_name: "iPhone 16 Pro Max",
-    image_url:
-      "https://www.oruphones.com/_next/image?url=https%3A%2F%2Fdemo-bucket-c2c-001.s3.amazonaws.com%2FGSMAimages%2Fapple_iphone_16_pro_max.webp&w=640&q=75",
-  },
-  {
-    id: 4,
-    brand: "Apple",
-    model_name: "iPhone 16 Plus",
-    image_url:
-      "https://www.oruphones.com/_next/image?url=https%3A%2F%2Fdemo-bucket-c2c-001.s3.amazonaws.com%2FGSMAimages%2Fapple_iphone_16_plus.webp&w=640&q=75",
-  },
-  {
-    id: 5,
-    brand: "Apple",
-    model_name: "iPhone 16 Pro",
-    image_url:
-      "https://www.oruphones.com/_next/image?url=https%3A%2F%2Fdemo-bucket-c2c-001.s3.amazonaws.com%2FGSMAimages%2Fapple_iphone_16_pro.webp&w=640&q=75",
-  },
-];
-
 const Cards = () => {
+  const [mobiles, setMobiles] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedMobile, setSelectedMobile] = useState(null);
+  const [form, setForm] = useState({ address: "", upi: "" });
+  const [buying, setBuying] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:7071/api/GetMobile")
+      .then((res) => setMobiles(res.data))
+      .catch(() => setMobiles([]));
+  }, []);
+
+  const handleBuyClick = (mobile) => {
+    setSelectedMobile(mobile);
+    setShowModal(true);
+  };
+
+  const handleFormChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleBuyNow = async () => {
+    setBuying(true);
+    setTimeout(() => {
+      setBuying(false);
+      setShowModal(false);
+      setForm({ address: "", upi: "" });
+      alert("Purchase request sent!");
+    }, 1200);
+  };
+
   return (
     <section className="w-full min-h-[60vh] bg-gradient-to-b from-gray-50 to-white py-12">
       <div className="max-w-7xl mx-auto px-4">
@@ -47,11 +42,63 @@ const Cards = () => {
           Latest Phones
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-          {data.map((item) => (
-            <Card key={item.id} {...item} />
+          {mobiles.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => handleBuyClick(item)}
+              style={{ cursor: "pointer" }}
+            >
+              <Card {...item} />
+            </div>
           ))}
         </div>
       </div>
+      {showModal && selectedMobile && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+              onClick={() => setShowModal(false)}
+            >
+              &times;
+            </button>
+            <h2 className="text-xl font-bold mb-4">
+              Buy{" "}
+              {selectedMobile.mobile_name || selectedMobile.model_name || "Mobile"}
+            </h2>
+            <form className="flex flex-col gap-4">
+              <input
+                type="text"
+                name="address"
+                placeholder="Enter your address"
+                value={form.address}
+                onChange={handleFormChange}
+                className="border rounded px-3 py-2"
+                required
+              />
+              <input
+                type="text"
+                name="upi"
+                placeholder="Enter your UPI ID"
+                value={form.upi}
+                onChange={handleFormChange}
+                className="border rounded px-3 py-2"
+                required
+              />
+              <button
+                type="button"
+                className="bg-[#7747ff] text-white px-6 py-2 rounded font-semibold mt-2 disabled:opacity-60"
+                onClick={handleBuyNow}
+                disabled={buying || !form.address || !form.upi}
+              >
+                {buying
+                  ? "Processing..."
+                  : `Buy Now (ID: ${selectedMobile.id || "-"})`}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
