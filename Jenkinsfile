@@ -32,31 +32,31 @@ pipeline {
             }
         }
 
-         stage("OWASP: Dependency Check"){
+        //  stage("OWASP: Dependency Check"){
+        //     steps{
+        //         script{
+        //             owasp_dependency()
+        //         }
+        //     }
+        // }
+        
+
+         stage("SonarQube: Code Analysis"){
             steps{
                 script{
-                    owasp_dependency()
+                  sonarqube_analysis("Sonar","ASPhones","Sonar")
+                  
+                }
+          
+            }
+        }
+         stage("SonarQube: Code Quality Gates"){
+            steps{
+                script{
+                    sonarqube_code_quality()
                 }
             }
         }
-        
-
-        //  stage("SonarQube: Code Analysis"){
-        //     steps{
-        //         script{
-        //           sonarqube_analysis("Sonar","ASPhones","Sonar")
-                  
-        //         }
-          
-        //     }
-        // }
-        //  stage("SonarQube: Code Quality Gates"){
-        //     steps{
-        //         script{
-        //             sonarqube_code_quality()
-        //         }
-        //     }
-        // }
 
          
           stage("Docker: Build Image"){
