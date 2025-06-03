@@ -23,8 +23,8 @@ spec:
             - name: regcred
           ports:
             - containerPort: 5173
-          envFrom:
-            env:
+      
+          env:
              - name: VITE_BACKEND_URL
                value: "http://54.173.255.161:31100"
           
