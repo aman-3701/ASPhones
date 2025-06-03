@@ -20,6 +20,12 @@ spec:
             - name: regcred
           ports:
             - containerPort: 5173
+          envFrom:
+            env:
+             - name: VITE_BACKEND_URL
+               value: "http://54.173.255.161:31100"
+          
+
           volumeMounts:
             - name: nginx-cache
               mountPath: /usr/share/nginx/html

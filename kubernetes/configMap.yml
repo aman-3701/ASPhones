@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-env
+  namespace: asphones
+data:
+  VITE_BACKEND_URL: "http://54.173.255.161:31100"

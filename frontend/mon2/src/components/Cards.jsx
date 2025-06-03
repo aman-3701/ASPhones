@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
 
+const API = import.meta.env.VITE_API_URL;
+
+
+
 const Cards = () => {
   const [mobiles, setMobiles] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +15,7 @@ const Cards = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7071/api/GetMobile")
+      .get(`${API}/api/GetMobile`)
       .then((res) => setMobiles(res.data))
       .catch(() => setMobiles([]));
   }, []);
