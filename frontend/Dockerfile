@@ -16,7 +16,7 @@ RUN rm -rf /usr/share/nginx/html && mkdir -p /usr/share/nginx/html
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Copy built Vite assets
-COPY --from=vite-app /app/client/dist /usr/share/nginx/html
+COPY --from=vite-app /app/mon2/dist /usr/share/nginx/html
 
 # Start Nginx
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
