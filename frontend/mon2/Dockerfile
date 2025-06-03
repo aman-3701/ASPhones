@@ -1,7 +1,7 @@
 # Stage 1: Build the Vite React App
 FROM node:18-alpine AS builder
 
-WORKDIR /frontend/mon2
+WORKDIR  /mon2
 
 COPY package.json pnpm-lock.yaml ./
 RUN npm install -g pnpm && pnpm install
