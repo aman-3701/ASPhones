@@ -1,16 +1,21 @@
-import pymysql
 import os
+import pymysql
+import logging
+from dotenv import load_dotenv
 
-# Defensive: log missing env vars and use defaults
-MYSQL_HOST = os.environ.get('MYSQL_HOST', 'database-1.c50eqi0c2eg3.ap-south-1.rds.amazonaws.com')
-MYSQL_USER = os.environ.get('MYSQL_USER', 'admin')
-MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', 'root12345')
-MYSQL_DB = os.environ.get('MYSQL_DB', 'aman')
-MYSQL_SSL_CA = os.environ.get('MYSQL_SSL_CA', 'aman.pem')
+# Load environment variables from .env file
+load_dotenv()
+
+# Read env vars with defaults as fallback
+MYSQL_HOST = os.getenv('DB_HOST')
+MYSQL_USER = os.getenv('DB_USER')
+MYSQL_PASSWORD = os.getenv('DB_PASSWORD', '')
+MYSQL_DB = os.getenv('DB_NAME', '')
+MYSQL_SSL_CA = os.getenv('MYSQL_SSL_CA')  # Can be None if not using SSL
 
 def get_connection():
     try:
-        return pymysql.connect(
+        connection = pymysql.connect(
             host=MYSQL_HOST,
             user=MYSQL_USER,
             password=MYSQL_PASSWORD,
@@ -19,11 +24,22 @@ def get_connection():
             port=3306,
             cursorclass=pymysql.cursors.DictCursor
         )
+        print("Successfully connected to the database!")
+        return connection
+
     except KeyError as e:
-        import logging
         logging.error(f"Missing MySQL config key: {e}")
         raise Exception(f"Missing MySQL config key: {e}")
-    except Exception as e:
-        import logging
+
+    except pymysql.MySQLError as e:
         logging.error(f"MySQL connection error: {e}")
         raise
+
+if __name__ == "__main__":
+    conn = get_connection()
+    # Example query:
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT VERSION()")
+        result = cursor.fetchone()
+        print("Database version:", result)
+    conn.close()
