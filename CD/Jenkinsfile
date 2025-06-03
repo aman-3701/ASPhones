@@ -30,6 +30,10 @@ pipeline {
                         sh '''
                         echo "Checking repository status: "
                         git status
+
+                        git config --global user.name "aman-3701"
+                        git config --global user.email "ry1185449@gmail.com"
+
                     
                         echo "Adding changes to git: "
                         git add .
