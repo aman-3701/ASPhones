@@ -18,6 +18,8 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy build files
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+RUN chmod -R 755 /usr/share/nginx/html
+
 # Copy custom entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
