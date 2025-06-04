@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const API = import.meta.env.VITE_BACKEND_URL;
+
 const SignUp = () => {
   const [Input, setInput] = useState({
     name: "",
@@ -27,7 +29,7 @@ const SignUp = () => {
         password: Input.password,
       };
       const response = await axios.post(
-        "http://localhost:7071/api/signup",
+        `http://${Api}/api/login`,
         payload,
         {
           headers: { "Content-Type": "application/json" },
