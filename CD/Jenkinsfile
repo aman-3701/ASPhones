@@ -23,31 +23,31 @@ pipeline {
         
         
         
-        stage("Git: Code update and push to GitHub"){
-            steps{
-                script{
-                    withCredentials([gitUsernamePassword(credentialsId: 'Github-cred', gitToolName: 'Default')]) {
-                        sh '''
-                        echo "Checking repository status: "
-                        git status
+        // stage("Git: Code update and push to GitHub"){
+        //     steps{
+        //         script{
+        //             withCredentials([gitUsernamePassword(credentialsId: 'Github-cred', gitToolName: 'Default')]) {
+        //                 sh '''
+        //                 echo "Checking repository status: "
+        //                 git status
 
-                        git config --global user.name "aman-3701"
-                        git config --global user.email "ry1185449@gmail.com"
+        //                 git config --global user.name "aman-3701"
+        //                 git config --global user.email "ry1185449@gmail.com"
 
                     
-                        echo "Adding changes to git: "
-                        git add .
+        //                 echo "Adding changes to git: "
+        //                 git add .
                         
-                        echo "Commiting changes: "
-                        git commit -m "Updated environment variables"
+        //                 echo "Commiting changes: "
+        //                 git commit -m "Updated environment variables"
                         
-                        echo "Pushing changes to github: "
-                        git push origin master
-                    '''
-                    }
-                }
-            }
-        }
+        //                 echo "Pushing changes to github: "
+        //                 git push origin master
+        //             '''
+        //             }
+        //         }
+        //     }
+        // }
     }
   post {
         success {
