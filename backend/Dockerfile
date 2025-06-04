@@ -1,16 +1,3 @@
-# FROM python:3.10-slim
-
-# WORKDIR /app
-
-# COPY requirements.txt .
-# RUN pip install -r requirements.txt
-
-# COPY . .
-
-# EXPOSE 8000
-
-# CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "function_app.py:app"]
-
 FROM mcr.microsoft.com/azure-functions/python:4-python3.10
 
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
@@ -18,8 +5,11 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     FUNCTIONS_WORKER_RUNTIME=python \
     ASPNETCORE_URLS=http://+:7071
 
-EXPOSE 7071
+# Install Python dependencies
+COPY requirements.txt /
+RUN pip install --upgrade pip && pip install -r /requirements.txt
 
+# Copy function code
 COPY . /home/site/wwwroot
 
-
+EXPOSE 7071
