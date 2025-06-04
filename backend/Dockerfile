@@ -9,6 +9,8 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
 COPY requirements.txt /
 RUN pip install --upgrade pip && pip install -r /requirements.txt
 
+RUN apt-get update && apt-get install -y default-mysql-client && apt-get clean
+
 # Copy function code
 COPY . /home/site/wwwroot
 
