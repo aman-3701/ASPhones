@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
 
-const API = import.meta.env.VITE_BACKEND_URL;
-
-
-
 const Cards = () => {
   const [mobiles, setMobiles] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -15,10 +11,7 @@ const Cards = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/api/GetMobile`)
-
-
-      
+      .get("/api/GetMobile")
       .then((res) => setMobiles(res.data))
       .catch(() => setMobiles([]));
   }, []);

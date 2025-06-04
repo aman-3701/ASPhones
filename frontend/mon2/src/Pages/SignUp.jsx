@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API = import.meta.env.VITE_BACKEND_URL;
-
 const SignUp = () => {
   const [Input, setInput] = useState({
     name: "",
@@ -29,7 +27,7 @@ const SignUp = () => {
         password: Input.password,
       };
       const response = await axios.post(
-        `http://${Api}/api/login`,
+        "/api/signup",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -39,7 +37,7 @@ const SignUp = () => {
       if (response.status !== 201) {
         throw new Error(response.data.message || "Signup failed");
       }
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || err.message);
     } finally {
@@ -47,10 +45,7 @@ const SignUp = () => {
     }
   };
 
-  useEffect(() => {
-    
-  }
-  , []);
+  useEffect(() => {}, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
