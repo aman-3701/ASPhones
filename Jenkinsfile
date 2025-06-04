@@ -89,7 +89,12 @@ pipeline {
                 string(name: 'BACKEND_DOCKER_TAG', value: "latest")
             ]
         }
+
+        always {
+            cleanWs()
+        }
     }
+
 
 
     }
