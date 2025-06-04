@@ -50,13 +50,13 @@ pipeline {
           
             }
         }
-        //  stage("SonarQube: Code Quality Gates"){
-        //     steps{
-        //         script{
-        //             sonarqube_code_quality()
-        //         }
-        //     }
-        // }
+         stage("SonarQube: Code Quality Gates"){
+            steps{
+                script{
+                    sonarqube_code_quality()
+                }
+            }
+        }
 
          
           stage("Docker: Build Image"){
@@ -80,6 +80,15 @@ pipeline {
                 }
             }
         }
+         post{
+        success{
+            archiveArtifacts artifacts: '*.xml', followSymlinks: false
+            build job: "ASPhones-CD", parameters: [
+                string(name: 'FRONTEND_DOCKER_TAG', value: "latest"),
+                string(name: 'BACKEND_DOCKER_TAG', value: "latest")
+            ]
+        }
+    }
 
     }
 }

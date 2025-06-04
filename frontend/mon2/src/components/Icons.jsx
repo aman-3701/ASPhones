@@ -17,15 +17,15 @@ const brands = [
   },
   {
     name: "Vivo",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Vivo_logo_2019.svg",
+    logo: "https://www.logo.wine/a/logo/Vivo_(technology_company)/Vivo_(technology_company)-Logo.wine.svg",
   },
   {
     name: "OnePlus",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6e/OnePlus_logo.svg",
+    logo: "https://cdn.freebiesupply.com/logos/large/2x/oneplus-logo-black-and-white.png",
   },
   {
     name: "Motorola",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Motorola_logo.svg",
+    logo: "https://cdn.freebiesupply.com/logos/large/2x/motorola-7-logo-png-transparent.png",
   },
 ];
 

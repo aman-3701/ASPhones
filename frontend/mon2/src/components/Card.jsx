@@ -75,20 +75,20 @@ const Card = ({
                 {inStock ? "In Stock" : "Out of Stock"}
               </span>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            {/* <div className="grid grid-cols-1 gap-2">
               <button
                 type="button"
                 className="flex-1 flex items-center justify-center gap-2 border border-slate-200 rounded-lg py-2 text-slate-700 hover:bg-slate-100 transition-colors"
               >
                 <FaRegHeart className="h-4 w-4" /> Wishlist
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 type="button"
                 className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-2 transition-colors"
               >
                 <FaShoppingCart className="h-4 w-4" /> Add to Cart
-              </button>
-            </div>
+              </button> */}
+            {/* </div> */}
           </div>
           {/* Features */}
           <div className="pt-4 border-t border-slate-200">

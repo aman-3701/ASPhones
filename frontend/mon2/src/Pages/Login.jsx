@@ -35,6 +35,7 @@ const Login = () => {
       if (response.status !== 200) {
         throw new Error(response.data.message || "Login failed");
       }
+      localStorage.setItem("isLoggedIn", "true");
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || err.message);
