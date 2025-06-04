@@ -6,7 +6,7 @@ COPY ./mon2 .
 
 RUN npm install && npm run build
 
-# Stage 2: Serve with Nginx
+
 FROM nginx:alpine
 
 # Remove default html directory
@@ -18,6 +18,6 @@ COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 # Copy built Vite assets
 COPY --from=vite-app /app/mon2/dist /usr/share/nginx/html
 
-EXPOSE 8888
+EXPOSE 5000
 # Start Nginx
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
