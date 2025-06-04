@@ -3,8 +3,10 @@ kind: Deployment
 metadata:
   name: backend
   namespace: asphones
+  labels:
+    app: backend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -15,7 +17,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: amandevops8080/backend-asphones:latest
+          image: amandevops8080/backend-asphones
           imagePullSecrets:
             - name: regcred
           ports:
@@ -27,7 +29,7 @@ spec:
               value: "3306"
             - name: DB_NAME
               value: aman
-            - name: DB_USER 
+            - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: mysql-secret
@@ -52,8 +54,3 @@ spec:
       targetPort: 7071
       protocol: TCP
       nodePort: 31100
-
-
-
-
-
