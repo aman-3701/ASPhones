@@ -48,7 +48,7 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 80
+    - port: 7071
       targetPort: 7071
       protocol: TCP
     #  nodePort: 31100
