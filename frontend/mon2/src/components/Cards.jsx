@@ -16,6 +16,9 @@ const Cards = () => {
   useEffect(() => {
     axios
       .get(`${API}/api/GetMobile`)
+
+
+      
       .then((res) => setMobiles(res.data))
       .catch(() => setMobiles([]));
   }, []);
