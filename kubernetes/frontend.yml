@@ -14,7 +14,6 @@ spec:
     metadata:
       labels:
         app: frontend
-      name: frontend
     spec:
       containers:
         - name: frontend
@@ -23,15 +22,10 @@ spec:
             - name: regcred
           ports:
             - containerPort: 5000
-      
           env:
-             - name: VITE_BACKEND_URL
-               value: "http://65.2.10.18:31100"
-          
-
+            - name: VITE_BACKEND_URL
+              value: "http://65.2.10.18:31100"
           volumeMounts:
-            - name: nginx-cache
-              mountPath: /usr/share/nginx/html
             - name: nginx-cache
               mountPath: /usr/share/nginx/html
       volumes:
