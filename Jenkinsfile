@@ -81,19 +81,19 @@ pipeline {
             }
         }
     }
-         post{
-          success{
-            archiveArtifacts artifacts: '*.xml', followSymlinks: false
-            build job: "ASPhones-CD", parameters: [
-                string(name: 'FRONTEND_DOCKER_TAG', value: "latest"),
-                string(name: 'BACKEND_DOCKER_TAG', value: "latest")
-            ]
-        }
+    //      post{
+    //       success{
+    //         archiveArtifacts artifacts: '*.xml', followSymlinks: false
+    //         build job: "ASPhones-CD", parameters: [
+    //             string(name: 'FRONTEND_DOCKER_TAG', value: "latest"),
+    //             string(name: 'BACKEND_DOCKER_TAG', value: "latest")
+    //         ]
+    //     }
 
-        always {
-            cleanWs()
-        }
-    }
+    //     always {
+    //         cleanWs()
+    //     }
+    // }
 
 
 
