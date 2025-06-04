@@ -26,14 +26,14 @@ spec:
       
           env:
              - name: VITE_BACKEND_URL
-               value: "http://54.173.255.161:31100"
+               value: "http://65.2.10.18:31100"
           
 
           volumeMounts:
             - name: nginx-cache
               mountPath: /usr/share/nginx/html
             - name: nginx-cache
-              mountPath: /var/cache/nginx
+              mountPath: /usr/share/nginx/html
       volumes:
         - name: nginx-cache
           emptyDir: {}
