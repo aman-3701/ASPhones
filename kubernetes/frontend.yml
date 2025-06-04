@@ -21,7 +21,7 @@ spec:
           imagePullSecrets:
             - name: regcred
           ports:
-            - containerPort: 5000
+            - containerPort: 80
           env:
             - name: VITE_BACKEND_URL
               value: "http://65.2.10.18:31100"
@@ -42,7 +42,7 @@ spec:
   selector:
     app: frontend
   ports:
-    - port: 5000
-      targetPort: 5000
+    - port: 80
+      targetPort: 80
       protocol: TCP
       nodePort: 32001
