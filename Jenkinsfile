@@ -80,8 +80,9 @@ pipeline {
                 }
             }
         }
+    }
          post{
-        success{
+          success{
             archiveArtifacts artifacts: '*.xml', followSymlinks: false
             build job: "ASPhones-CD", parameters: [
                 string(name: 'FRONTEND_DOCKER_TAG', value: "latest"),
@@ -90,5 +91,6 @@ pipeline {
         }
     }
 
+
     }
-}
+
