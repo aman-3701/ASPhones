@@ -43,3 +43,7 @@ if __name__ == "__main__":
         result = cursor.fetchone()
         print("Database version:", result)
     conn.close()
+
+
+# Ensure the connection is closed properly
+# if __name__ == "__main__":
