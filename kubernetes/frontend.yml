@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: amandevops8080/frontend-asphones
+          image: amandevops8080/frontend-asphones:latest
           imagePullSecrets:
             - name: regcred
           ports:
@@ -25,12 +25,6 @@ spec:
           env:
             - name: VITE_BACKEND_URL
               value: "http://65.2.10.18:31100"
-          volumeMounts:
-            - name: nginx-cache
-              mountPath: /usr/share/nginx/html
-      volumes:
-        - name: nginx-cache
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
