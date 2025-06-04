@@ -43,7 +43,8 @@ spec:
 #                 secretKeyRef:
 #                   name: mysql-secret
 #                   key: mysql-password
-# ---
+
+---
 apiVersion: v1
 kind: Service
 metadata:
