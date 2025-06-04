@@ -4,6 +4,7 @@ pymysql
 psycopg2-binary
 # or
 boto3
+python-dotenv
 gunicorn
 bcrypt
 azure-functions
