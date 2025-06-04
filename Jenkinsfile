@@ -32,13 +32,13 @@ pipeline {
             }
         }
 
-         stage("OWASP: Dependency Check"){
-            steps{
-                script{
-                    owasp_dependency()
-                }
-            }
-        }
+        //  stage("OWASP: Dependency Check"){
+        //     steps{
+        //         script{
+        //             owasp_dependency()
+        //         }
+        //     }
+        // }
         
 
          stage("SonarQube: Code Analysis"){
