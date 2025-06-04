@@ -51,7 +51,7 @@ spec:
     - port: 7071
       targetPort: 7071
       protocol: TCP
-    #  nodePort: 31100
+      nodePort: 31100
 
 
 
