@@ -51,4 +51,4 @@ spec:
     - port: 80
       targetPort: 5000
       protocol: TCP
-     # nodePort: 32000
+      nodePort: 32001
