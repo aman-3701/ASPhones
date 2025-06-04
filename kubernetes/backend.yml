@@ -30,20 +30,15 @@ spec:
             - name: DB_NAME
               value: aman
             - name: DB_USER
-              value: admin
-              # valueFrom:
-                # secretKeyRef:
-                #   name: mysql-secret
-                #   key: mysql-user
-             
-
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-user
             - name: DB_PASSWORD
-              value: root12345
-#               valueFrom:
-#                 secretKeyRef:
-#                   name: mysql-secret
-#                   key: mysql-password
-
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-password
 ---
 apiVersion: v1
 kind: Service
