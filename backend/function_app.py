@@ -11,12 +11,12 @@ from components.signup_handler import handle_signup
 app = func.FunctionApp()
 
 @app.function_name(name="signup")
-@app.route(route="signup", methods=[ "POST"])
+@app.route(route="signup", methods=[ "POST"],auth_level=func.AuthLevel.ANONYMOUS)
 def signup_function(req: func.HttpRequest) -> func.HttpResponse:
     return handle_signup(req)
 
 @app.function_name(name="login")
-@app.route(route="login", methods=[ "POST"])
+@app.route(route="login", methods=[ "POST"],auth_level=func.AuthLevel.ANONYMOUS)
 def login_function(req: func.HttpRequest) -> func.HttpResponse:
     return handle_login(req)
 
@@ -26,7 +26,7 @@ def mobile_function(req: func.HttpRequest) -> func.HttpResponse:
     return get_mobile(req)
 
 @app.function_name(name="mobile_id")
-@app.route(route="GetMobile_id/{id}", methods=[ "GET"])
+@app.route(route="GetMobile_id/{id}", methods=[ "GET"],auth_level=func.AuthLevel.ANONYMOUS)
 def mobile_id_function(req: func.HttpRequest) -> func.HttpResponse:
     return get_mobile_id(req)
 
