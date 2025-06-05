@@ -20,7 +20,7 @@ def signup_function(req: func.HttpRequest) -> func.HttpResponse:
 def login_function(req: func.HttpRequest) -> func.HttpResponse:
     return handle_login(req)
 
-@app.function_name(name="get_mobile")
+@app.function_name(name="mobile")
 @app.route(route="GetMobile", methods=[ "GET"])
 def mobile_function(req: func.HttpRequest) -> func.HttpResponse:
     return get_mobile(req)
