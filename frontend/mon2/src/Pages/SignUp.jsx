@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const api = import.meta.env.VITE_BACKEND_URL;
+
 const SignUp = () => {
   const [Input, setInput] = useState({
-    name: "",
+    // name: "",
+    username: "",
     email: "",
     password: ""
   });
@@ -24,7 +26,8 @@ const SignUp = () => {
     try {
       // Only send name and password as per backend requirements
       const payload = {
-        name: Input.name,
+        // name: Input.name,
+        username: Input.username,
         password: Input.password,
       };
       const response = await axios.post(

@@ -5,7 +5,8 @@ import axios from "axios";
 const api = import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   const [Input, setInput] = useState({
-    name: "",
+    // name: "",
+    username: "",
     password: ""
   });
   const [loading, setLoading] = useState(false);
@@ -13,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setInput({ ...Input, [e.target.name]: e.target.value });
+    setInput({ ...Input, [e.target.username]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -22,7 +23,8 @@ const Login = () => {
     setError("");
     try {
       const payload = {
-        name: Input.name,
+        // name: Input.name,
+        username: Input.username,
         password: Input.password,
       };
       const response = await axios.post(
@@ -67,7 +69,7 @@ const Login = () => {
               type="text"
               id="name"
               name="name"
-              value={Input.name}
+              value={Input.username}
               onChange={handleChange}
               className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
               required
