@@ -32,13 +32,13 @@ pipeline {
             }
         }
 
-        //  stage("OWASP: Dependency Check"){
-        //     steps{
-        //         script{
-        //             owasp_dependency()
-        //         }
-        //     }
-        // }
+         stage("OWASP: Dependency Check"){
+            steps{
+                script{
+                    owasp_dependency()
+                }
+            }
+        }
         
 
          stage("SonarQube: Code Analysis"){
@@ -50,13 +50,13 @@ pipeline {
           
             }
         }
-        //  stage("SonarQube: Code Quality Gates"){
-        //     steps{
-        //         script{
-        //             sonarqube_code_quality()
-        //         }
-        //     }
-        // }
+         stage("SonarQube: Code Quality Gates"){
+            steps{
+                script{
+                    sonarqube_code_quality()
+                }
+            }
+        }
 
          
           stage("Docker: Build Image"){
