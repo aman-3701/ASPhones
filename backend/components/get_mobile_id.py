@@ -2,7 +2,7 @@ import datetime
 import azure.functions as func
 import json
 import logging
-from db.mysql_connection import get_connection
+from  mysql_connection import get_connection
 
 
 def default_serializer(obj):

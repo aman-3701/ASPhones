@@ -1,10 +1,14 @@
 import datetime
 import azure.functions as func
 import json
-import logging
-from mysql_connection import get_connection  
+import logging 
 import os
-# your MySQL connection helper
+from dotenv import load_dotenv
+from mysql_connection import get_connection
+
+
+load_dotenv()
+
 api = os.environ.get("api")
 
 def default_serializer(obj):
@@ -18,7 +22,7 @@ def get_mobile(req: func.HttpRequest) -> func.HttpResponse:
     def cors_response(body, status_code=200):
         if isinstance(body, (dict, list)):
             body = json.dumps(body, default=default_serializer)
-        # For local development, allow localhost as CORS origin if api is not set
+       
         
         return func.HttpResponse(
             body,

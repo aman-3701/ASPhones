@@ -2,7 +2,7 @@ import json
 import azure.functions as func
 import logging
 import bcrypt
-from db.mysql_connection import get_connection
+from mysql_connection import get_connection
 import os
 
 api = os.environ.get("api")
