@@ -17,7 +17,12 @@ def handle_signup(req: func.HttpRequest) -> func.HttpResponse:
             body,
             status_code=status_code,
             headers={
-                'Access-Control-Allow-Origin':  api  or '*',
+                # 'Access-Control-Allow-Origin':  api  or '*',
+                # 'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                # 'Access-Control-Allow-Headers': 'Content-Type',
+                # 'Referrer-Policy': 'strict-origin-when-cross-origin',
+                # 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': "*",
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',

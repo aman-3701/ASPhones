@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const api = import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   const [Input, setInput] = useState({
     name: "",
@@ -25,7 +26,7 @@ const Login = () => {
         password: Input.password,
       };
       const response = await axios.post(
-        "http://65.2.10.18:31100/api/login",
+        `${api}/login`,
         payload,
         {
           headers: { "Content-Type": "application/json" },
