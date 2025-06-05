@@ -22,8 +22,13 @@ pipeline {
         stage("Git: Code update and push to GitHub") {
             steps {
                 script {
-                    withCredentials([gitUsernamePassword(credentialsId: 'git_cred', gitToolName: 'Default')]) {
+                    // withCredentials([gitUsernamePassword(credentialsId: 'git_cred', gitToolName: 'Default')]) {
+                        // sh '''
+
+                       withCredentials([usernamePassword(credentialsId: 'git_cred', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
                         sh '''
+                 
+                        git clone https://${GIT_USER}:${GIT_TOKEN}@github.com/aman-3701/ASPhones.git
                         echo "Checking repository status: "
                         git status
 
