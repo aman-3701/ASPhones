@@ -8,3 +8,5 @@ python-dotenv
 gunicorn
 bcrypt
 azure-functions
+flask
+flask-cors
