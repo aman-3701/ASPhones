@@ -13,7 +13,9 @@ const Cards = () => {
 
   useEffect(() => {
     axios
-      .get("http://65.2.10.18:31100/api/GetMobile")
+      // .get("http://65.2.10.18:31100/api/GetMobile")
+      .get(`${api}/GetMobile`)
+
       .then((res) => setMobiles(res.data))
       .catch(() => setMobiles([]));
   }, []);

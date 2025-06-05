@@ -27,7 +27,8 @@ const SignUp = () => {
         password: Input.password,
       };
       const response = await axios.post(
-        "/api/signup",
+        // "/api/signup",
+        "http://65.2.10.18:31100/api/signup",
         payload,
         {
           headers: { "Content-Type": "application/json" },

@@ -25,7 +25,7 @@ const Login = () => {
         password: Input.password,
       };
       const response = await axios.post(
-        "/api/login",
+        "http://65.2.10.18:31100/api/login",
         payload,
         {
           headers: { "Content-Type": "application/json" },
