@@ -26,31 +26,34 @@ pipeline {
                         // sh '''
 
                        withCredentials([usernamePassword(credentialsId: 'git_cred', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
-                        sh '''
-                 
-                        git clone https://${GIT_USER}:${GIT_TOKEN}@github.com/aman-3701/ASPhones.git
-                        echo "Checking repository status: "
-                        git status
+                sh '''
+                    echo "Cloning the repo..."
+                    git clone https://${GIT_USER}:${GIT_TOKEN}@github.com/aman-3701/ASPhones.git
 
-                        git config --global user.name "aman-3701"
-                        git config --global user.email "ry1185449@gmail.com"
+                    cd ASPhones
 
-                        echo "Adding changes to git: "
-                        git add .
+                    echo "Checking repository status: "
+                    git status
 
-                        if git diff --cached --quiet; then
-                            echo "No changes to commit, creating dummy commit"
-                            git commit --allow-empty -m "Trigger build or force push"
-                        else
-                            echo "Committing changes"
-                            git commit -m "Updated environment variables"
-                        fi
+                    git config user.name "aman-3701"
+                    git config user.email "ry1185449@gmail.com"
 
-                        echo "Pushing changes to github: "
-                        git push origin master
-                        '''
+                    echo "Adding changes to git: "
+                    git add .
+
+                    if git diff --cached --quiet; then
+                        echo "No changes to commit, creating dummy commit"
+                        git commit --allow-empty -m "Trigger build or force push"
+                    else
+                        echo "Committing changes"
+                        git commit -m "Updated environment variables"
+                    fi
+
+                    echo "Pushing changes to GitHub: "
+                    git push origin master
+                '''
                     }
-                }
+                 }
             }
         }
     }
