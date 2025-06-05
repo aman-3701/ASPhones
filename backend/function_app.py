@@ -21,7 +21,7 @@ def login_function(req: func.HttpRequest) -> func.HttpResponse:
     return handle_login(req)
 
 @app.function_name(name="mobile")
-@app.route(route="GetMobile", methods=[ "GET"])
+@app.route(route="GetMobile", methods=[ "GET"],auth_level=func.AuthLevel.ANONYMOUS)
 def mobile_function(req: func.HttpRequest) -> func.HttpResponse:
     return get_mobile(req)
 
