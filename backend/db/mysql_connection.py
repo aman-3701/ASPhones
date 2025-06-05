@@ -3,10 +3,10 @@ import pymysql
 import logging
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
+
 load_dotenv()
 
-# Read env vars with defaults as fallback
+
 MYSQL_HOST = os.getenv('DB_HOST')
 MYSQL_USER = os.getenv('DB_USER')
 MYSQL_PASSWORD = os.getenv('DB_PASSWORD', '')
