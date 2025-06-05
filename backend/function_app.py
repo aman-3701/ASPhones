@@ -27,6 +27,6 @@ def mobile_function(req: func.HttpRequest) -> func.HttpResponse:
 
 @app.function_name(name="mobile_id")
 @app.route(route="GetMobile_id/{id}", methods=[ "GET"])
-def mobile_function(req: func.HttpRequest) -> func.HttpResponse:
+def mobile_id_function(req: func.HttpRequest) -> func.HttpResponse:
     return get_mobile_id(req)
 

@@ -10,7 +10,7 @@ load_dotenv()
 MYSQL_HOST = os.getenv('DB_HOST')
 MYSQL_USER = os.getenv('DB_USER')
 MYSQL_PASSWORD = os.getenv('DB_PASSWORD', '')
-MYSQL_PORT = int(os.getenv('DB_PORT', 3306))  
+MYSQL_PORT = int(os.getenv('DB_PORT', 3306))  # Default MySQL port is 3306
 MYSQL_DB = os.getenv('DB_NAME', '')
 MYSQL_SSL_CA = os.getenv('MYSQL_SSL_CA')  # Can be None if not using SSL
 
@@ -21,10 +21,9 @@ def get_connection():
             host=MYSQL_HOST,
             user=MYSQL_USER,
             password=MYSQL_PASSWORD,
-            db=MYSQL_DB,
-            ssl_ca=MYSQL_SSL_CA,
+            db=MYSQL_DB, 
             port=MYSQL_PORT,
-            ssl=ssl,
+            ssl=None,
             cursorclass=pymysql.cursors.DictCursor
         )
         print("Successfully connected to the database!")

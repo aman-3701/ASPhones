@@ -18,11 +18,13 @@ def get_mobile(req: func.HttpRequest) -> func.HttpResponse:
     def cors_response(body, status_code=200):
         if isinstance(body, (dict, list)):
             body = json.dumps(body, default=default_serializer)
+        # For local development, allow localhost as CORS origin if api is not set
+        origin = api if api else "http://localhost:5173"
         return func.HttpResponse(
             body,
             status_code=status_code,
             headers={
-               'Access-Control-Allow-Origin': '${api}',
+                'Access-Control-Allow-Origin': origin,
                 'Access-Control-Allow-Methods': 'GET, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',
