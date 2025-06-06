@@ -29,13 +29,13 @@ def handle_signup(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == 'OPTIONS':
         return cors_response({}, 204)
 
-    name = req.params.get('username')
+    name = req.params.get('name')
     password = req.params.get('password')
 
     if not name:
         try:
             req_body = req.get_json()
-            name = req_body.get('username')
+            name = req_body.get('name')
             password = req_body.get('password')
         except ValueError:
             return cors_response({"message": "Invalid JSON body"}, 400)
