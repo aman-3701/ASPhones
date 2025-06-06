@@ -2,13 +2,11 @@ import json
 import azure.functions as func
 import logging
 import bcrypt
-from flask import app
 from flask_cors import CORS
 from mysql_connection import get_connection
 import os
 
-API= os.environ.get("api")
-CORS(app, resources={r"/api/*": {"origins": API}}, supports_credentials=True)
+api = os.environ.get("api")
 
 def handle_signup(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing signup request')
